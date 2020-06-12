@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+repository=gotham
+parent=base
+variants=(node)
