@@ -15,7 +15,11 @@ jobs:
       - setup_remote_docker
       - run:
           name: "Build Docker Images"
-          command: ./build-images.sh
+          command: |
+            # Fix hardcoded 'cimg' until CircleCI fixes this
+            sed -i 's/cimg/hubci/g' build-images.sh
+            sed -i 's/FROM cimg/FROM hubci/g' ./*/node/Dockerfile
+            ./build-images.sh
       - deploy:
           name: "Publish Docker Images (master branch only)"
           command: |
