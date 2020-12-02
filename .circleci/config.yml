@@ -12,7 +12,7 @@ workflows:
 jobs:
   build:
     docker:
-      - image: cimg/base:2020.09
+      - image: cimg/base:2020.12
     steps:
       - checkout
       - setup_remote_docker:
@@ -25,7 +25,7 @@ jobs:
             sed -i 's/FROM cimg/FROM hubci/g' ./*/node/Dockerfile
             ./build-images.sh
       - sonar/install:
-          version: 0.12.0
+          version: 0.13.0
       - deploy:
           name: "Publish Docker Images (master branch only)"
           command: |
