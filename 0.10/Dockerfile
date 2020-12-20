@@ -5,11 +5,12 @@ FROM cimg/base:2020.12
 
 LABEL maintainer="Ricardo N Feliciano <Ricardo@Feliciano.Tech>"
 
-ENV GOTHAM_VERSION=0.10.0
+ENV GOTHAM_VERSION=0.10.1
 ENV	GOTHAM_DOWNLOAD_URL="https://github.com/gothamhq/gotham/releases/download/v${GOTHAM_VERSION}/gotham-v${GOTHAM_VERSION}-linux-amd64.tar.gz"
 
 # Install HTML Proofer - eventually to be replaced with non-Ruby alternative
 RUN sudo apt-get update && sudo apt-get install -y \
+		libffi-dev \
 		rsync \
 		ruby-full \
 		# Needed for the Nokogiri gem

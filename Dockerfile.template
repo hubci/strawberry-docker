@@ -10,6 +10,7 @@ ENV	GOTHAM_DOWNLOAD_URL="https://github.com/gothamhq/gotham/releases/download/v$
 
 # Install HTML Proofer - eventually to be replaced with non-Ruby alternative
 RUN sudo apt-get update && sudo apt-get install -y \
+		libffi-dev \
 		rsync \
 		ruby-full \
 		# Needed for the Nokogiri gem
