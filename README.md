@@ -4,16 +4,18 @@
 		<img alt="Docker Logo" src="https://raw.github.com/hubci/gotham-docker/master/img/circle-docker.svg?sanitize=true" width="75" />
 		<img alt="Gotham Logo" src="https://raw.github.com/hubci/gotham-docker/master/img/circle-gotham.svg?sanitize=true" width="75" />
 	</p>
-	<h1>Gotham Static Site Generator Docker Image</h1>
-	<h3>A Continuous Integration focused Gotham Docker image built to run on CircleCI</h3>
+	<h1>Strawberry Static Site Generator Docker Image</h1>
+	<h3>A Continuous Integration focused Strawberry Docker image built to run on CircleCI</h3>
 </div>
 
-[![CircleCI Build Status](https://circleci.com/gh/hubci/gotham-docker.svg?style=shield)](https://circleci.com/gh/hubci/gotham-docker) [![Software License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/hubci/gotham-docker/master/LICENSE) [![Docker Pulls](https://img.shields.io/docker/pulls/hubci/gotham)](https://hub.docker.com/r/hubci/gotham)
+[![CircleCI Build Status](https://circleci.com/gh/hubci/strawberry-docker.svg?style=shield)](https://circleci.com/gh/hubci/strawberry-docker) [![Software License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/hubci/strawberry-docker/master/LICENSE) [![Docker Pulls](https://img.shields.io/docker/pulls/hubci/strawberry)](https://hub.docker.com/r/hubci/strawberry)
 
 ***While this image was designed with CircleCI in mind, it can be used with other CI providers that offer Docker support.***
 
-`hubci/gotham` is a Docker image created with continuous integration builds in mind.
-Each tag contains a Gotham version (matching the tag), tools for testing such as HTML-Proofer, and any binaries and tools that are required for builds to complete successfully in a CircleCI environment.
+`hubci/strawberry` is a Docker image created with continuous integration builds in mind.
+Each tag contains a Strawberry version (matching the tag), tools for testing such as HTML-Proofer, and any binaries and tools that are required for builds to complete successfully in a CircleCI environment.
+Strawberry used to be called Gotham.
+Thus this image used to be called `hubci/gotham`.
 
 
 ## Table of Contents
@@ -36,49 +38,49 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: hubci/gotham:0.1
+      - image: hubci/strawberry:0.14
     steps:
       - checkout
       - run:
-          name: "Build with Gotham"
-          command: HUGO_ENV=production gotham -v
+          name: "Build with Strawberry"
+          command: HUGO_ENV=production strawberry -v
       - run:
           name: "Test Website"
           command: htmlproofer ./public --allow-hash-href --check-html --empty-alt-ignore --disable-external
 ```
 
-In the above example, the HubCI Gotham Docker image is used as the primary container.
-More specifically, the tag `0.1` is used meaning the version of Gotham will be Gotham v0.1.x, with 'x' being the latest patch release.
-You can now use Gotham within the steps for this job.
+In the above example, the HubCI Strawberry Docker image is used as the primary container.
+More specifically, the tag `0.14` is used meaning the version of Strawberry will be Strawberry v0.14.x, with 'x' being the latest patch release.
+You can now use Strawberry within the steps for this job.
 
 
 ## How This Image Works
 
-This image contains the static site generator Gotham and related testing tools such as HTML-Proofer.
+This image contains the static site generator Strawberry and related testing tools such as HTML-Proofer.
 You can build your static site with this image, test it, and optionally ship it somewhere.
 
 ### Variants
 
 This image has a Node.js variant.
 Variant images typically contain the same base software, but with a few additional modifications.
-The Node.js variant is the same Gotham image but with Node.js also installed.
-The Node.js variant can be used by appending `-node` to the end of an existing `hubci/gotham` tag.
+The Node.js variant is the same Strawberry image but with Node.js also installed.
+The Node.js variant can be used by appending `-node` to the end of an existing `hubci/strawberry` tag.
 
 ### Tagging Scheme
 
 This image has the following tagging scheme:
 
 ```
-hubci/gotham:<gotham-version>[-variant]
+hubci/strawberry:<strawberry-version>[-variant]
 ```
 
-`<gotham-version>` - The version of Gotham to use.
+`<strawberry-version>` - The version of Strawberry to use.
 This can be a full SemVer point release (such as `1.12.7`) or just the minor release (such as `1.12`).
-If you use the minor release tag, it will automatically point to future patch updates as they are released by the Gotham Team.
-For example, the tag `0.1` points to Gotham v0.1.0 now, but when the next release comes out, it will point to Gotham v0.1.1.
+If you use the minor release tag, it will automatically point to future patch updates as they are released by the Strawberry Team.
+For example, the tag `0.14` points to Gotham v0.14.0 now, but if and when a patch release comes out, it will point to Strawberry v0.14.1.
 
 `[-variant]` - Variant tags, if available, can optionally be used.
-The Node.js variant is available, it can be used like this: `hubci/gotham:0.1-node`.
+The Node.js variant is available, it can be used like this: `hubci/strawberry:0.14-node`.
 
 
 ## Development
@@ -104,7 +106,7 @@ If you missed this step and already cloned, you can just run `git submodule upda
 Then you can optionally add this repo as an upstream to your own:
 
 ```bash
-git remote add upstream https://github.com/hubci/gotham-docker.git
+git remote add upstream https://github.com/hubci/strawberry-docker.git
 ```
 
 ### Cloning For Maintainers ( you have write access to this repository)
@@ -112,25 +114,25 @@ git remote add upstream https://github.com/hubci/gotham-docker.git
 Clone the project with the following command so that you populate the submodule:
 
 ```bash
-git clone --recurse-submodules git@github.com:hubci/gotham-docker.git
+git clone --recurse-submodules git@github.com:hubci/strawberry-docker.git
 ```
 
 ### Generating Dockerfiles
 
-Dockerfiles can be generated for a specific Gotham version using the `gen-dockerfiles.sh` script.
-For example, to generate the Dockerfile for Gotham v0.1.0, you would run the following from the root of the repo:
+Dockerfiles can be generated for a specific Strawberry version using the `gen-dockerfiles.sh` script.
+For example, to generate the Dockerfile for Strawberry v0.14.0, you would run the following from the root of the repo:
 
 ```bash
-./shared/gen-dockerfiles.sh 0.1.0
+./shared/gen-dockerfiles.sh 0.14.0
 ```
 
-The generated Dockerfile will be located at `./0.1/Dockefile`.
+The generated Dockerfile will be located at `./0.14/Dockefile`.
 To build this image locally and try it out, you can run the following:
 
 ```bash
-cd 0.1
-docker build -t test/gotham:0.1.0 .
-docker run -it test/go:0.1.0 bash
+cd 0.14
+docker build -t test/strawberry:0.14.0 .
+docker run -it test/strawberry:0.14.0 bash
 ```
 
 ### Building the Dockerfiles
@@ -148,7 +150,7 @@ When releasing proper images as HubCI, this script is run from a CircleCI pipeli
 
 The individual scripts (above) can be used to create the correct files for an image, and then added to a new git branch, committed, etc.
 A release script is included to make this process easier.
-To make a proper release for this image, let's use the fake Gotham version of Gotham v9.99, you would run the following from the repo root:
+To make a proper release for this image, let's use the fake Strawberry version of Strawberry v9.99, you would run the following from the repo root:
 
 ```bash
 ./shared/release.sh 9.99
@@ -181,30 +183,30 @@ git add shared
 git commit -m "Updating submodule for foo."
 ```
 
-**parent image** - By design, when changes happen to a parent image, they don't appear in existing Gotham images.
+**parent image** - By design, when changes happen to a parent image, they don't appear in existing Strawberry images.
 This is to aid in "determinism" and prevent breaking user builds.
-New Gotham images will automatically pick up the changes.
+New Strawberry images will automatically pick up the changes.
 
-If you *really* want to publish changes from a parent image into the Gotham image, you have to build a specific image version as if it was a new image.
+If you *really* want to publish changes from a parent image into the Strawberry image, you have to build a specific image version as if it was a new image.
 This will create a new Dockerfile and once published, a new image.
 
-**Gotham specific changes** - Editing the `Dockerfile.template` file in this repo will modify the Gotham image specifically.
+**Strawberry specific changes** - Editing the `Dockerfile.template` file in this repo will modify the Strawberry image specifically.
 Don't forget that to see any of these changes locally, the `gen-dockerfiles.sh` script will need to be run again (see above).
 
 
 ## Contributing
 
-We encourage [issues](https://github.com/hubci/gotham-docker/issues) and [pull requests](https://github.com/hubci/gotham/pulls) against this repository.
+We encourage [issues](https://github.com/hubci/strawberry-docker/issues) and [pull requests](https://github.com/hubci/strawberry/pulls) against this repository.
 In order to value your time, here are some things to consider:
 
-1. We won't include just anything in this image. In order for us to add a tool within the Gotham image, it has to be something that is maintained and useful to a large number of Gotham users. Every tool added makes the image larger and slower for all users so being thorough on what goes in the image will benefit everyone.
+1. We won't include just anything in this image. In order for us to add a tool within the Strawberry image, it has to be something that is maintained and useful to a large number of Strawberry users. Every tool added makes the image larger and slower for all users so being thorough on what goes in the image will benefit everyone.
 1. PRs are welcome. If you have a PR that will potentially take a large amount of time to make, it will be better to open an issue to discuss it first to make sure it's something worth investing the time in.
 1. Issues should be used to report bugs or request additional/removal of tools in this image.
 
 
 ## Additional Resources
 
-[Gotham Website](https://GothamHQ.com) - The official Gotham website. Still under construction.
+[Strawberry Website](https://www.StrawberrySSG.com) - The official Strawberry website. Still under construction.
 [CircleCI Docs](https://circleci.com/docs/) - The official CircleCI Documentation website.  
 [CircleCI Configuration Reference](https://circleci.com/docs/2.0/configuration-reference/#section=configuration) - From CircleCI Docs, the configuration reference page is one of the most useful pages we have.
 It will list all of the keys and values supported in `.circleci/config.yml`.  
