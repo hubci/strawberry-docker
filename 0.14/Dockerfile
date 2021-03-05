@@ -1,11 +1,11 @@
 # vim:set ft=dockerfile:
 
 # Base off of CircleCI's base Ubuntu image
-FROM cimg/%%PARENT%%:2021.03
+FROM cimg/base:2021.03
 
 LABEL maintainer="Ricardo N Feliciano <Ricardo@Feliciano.Tech>"
 
-ENV SB_VERSION=%%MAIN_VERSION%%
+ENV SB_VERSION=0.14.0
 ENV	SB_DOWNLOAD_URL="https://github.com/strawberryssg/strawberry-v0/releases/download/v${SB_VERSION}/strawberry-v${SB_VERSION}-linux-amd64.tar.gz"
 
 # Install HTML Proofer - eventually to be replaced with non-Ruby alternative
