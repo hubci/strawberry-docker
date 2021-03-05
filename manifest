@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-repository=gotham
+repository=strawberry
 parent=base
 variants=(node)

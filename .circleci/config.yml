@@ -35,12 +35,12 @@ jobs:
               
               # an else block will be added in the future for a staging release
               if git log -1 --pretty=%s | grep "\[release\]"; then
-                echo "Publishing hubci/gotham to Docker Hub production."
-                docker push hubci/gotham
+                echo "Publishing hubci/strawberry to Docker Hub production."
+                docker push hubci/strawberry
               else
                 echo "Skipping publishing."
               fi
 
               # Update the Docker Hub description
-              sonar set description hubci/gotham ./README.md
+              sonar set description hubci/strawberry ./README.md
             fi
