@@ -27,9 +27,9 @@ jobs:
       - sonar/install:
           version: 0.13.0
       - deploy:
-          name: "Publish Docker Images (master branch only)"
+          name: "Publish Docker Images (trunk branch only)"
           command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+            if [ "${CIRCLE_BRANCH}" == "trunk" ]; then
               
               echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
               
