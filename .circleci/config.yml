@@ -36,10 +36,10 @@ jobs:
               # an else block will be added in the future for a staging release
               if git log -1 --pretty=%s | grep "\[release\]"; then
                 echo "Publishing hubci/strawberry to Docker Hub production."
-                docker push hubci/strawberry:0.18.0
-                docker push hubci/strawberry:0.18
-                docker push hubci/strawberry:0.18.0-node
-                docker push hubci/strawberry:0.18-node
+                docker push hubci/strawberry:0.19.0
+                docker push hubci/strawberry:0.19
+                docker push hubci/strawberry:0.19.0-node
+                docker push hubci/strawberry:0.19-node
               else
                 echo "Skipping publishing."
               fi
