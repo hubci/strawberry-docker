@@ -5,7 +5,7 @@ FROM cimg/base:2021.07
 
 LABEL maintainer="Ricardo N Feliciano <Ricardo@Feliciano.Tech>"
 
-ENV SB_VERSION=0.20.0
+ENV SB_VERSION=0.20.1
 ENV	SB_DOWNLOAD_URL="https://github.com/strawberryssg/strawberry-v0/releases/download/v${SB_VERSION}/strawberry-v${SB_VERSION}-linux-amd64.tar.gz"
 
 # Install HTML Proofer - eventually to be replaced with non-Ruby alternative
