@@ -3,3 +3,4 @@
 repository=strawberry
 parent=base
 variants=(node)
+namespace=hubci
