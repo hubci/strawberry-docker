@@ -1,7 +1,7 @@
 # vim:set ft=dockerfile:
 
 # Base off of CircleCI's base Ubuntu image
-FROM hubci/base:2022.01
+FROM cimg/base:2022.01
 
 LABEL maintainer="Ricardo N Feliciano <Ricardo@Feliciano.Tech>"
 
